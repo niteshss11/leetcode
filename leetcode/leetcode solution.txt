@@ -1,0 +1,149 @@
+leetcode:190
+class Solution {
+    public int reverseBits(int n) {
+        int result = 0;
+        for(int i = 0; i < 32; i++){
+            result = result << 1;
+            result = result | (n & 1);
+            n = n >> 1;
+        }
+        return result;
+    }
+}
+
+leetcode:476
+class Solution {
+    public int findComplement(int num) {
+         int mask = 1;        
+        while(mask < num){
+            mask = (mask << 1) | 1;
+        }       
+        return num ^ mask;       
+    }
+}
+
+leetcode:326
+class Solution {
+    public boolean isPowerOfThree(int n) {
+        if(n <= 0) return false;
+        while(n % 3 == 0){
+            n = n / 3;
+        }
+        return n == 1; 
+    }
+}
+
+leetcode:7
+class Solution {
+    public int reverse(int x) {
+                int result = 0;
+        while(x != 0){
+            int digit = x % 10;
+            if(result > Integer.MAX_VALUE/10 || 
+               result < Integer.MIN_VALUE/10){
+                return 0;
+            }
+            result = result * 10 + digit;
+            x = x / 10;
+        }
+        return result;       
+    }
+}
+
+leetcode:9
+class Solution {
+    public boolean isPalindrome(int x) {
+                if(x < 0) return false;
+        int original = x;
+        int rev = 0;
+        while(x > 0){
+
+            int digit = x % 10;
+
+            rev = rev * 10 + digit;
+
+            x = x / 10;
+        }
+        return original == rev;
+    }
+}
+
+leetcode:2652
+class Solution {
+    public int sumOfMultiples(int n) {
+                int sum = 0;
+        for(int i = 1; i <= n; i++){
+            if(i % 3 == 0 || i % 5 == 0 || i % 7 == 0){
+                sum += i;
+            }
+        }
+        return sum;       
+    }
+}
+
+leetcode:2739
+class Solution {
+    public int distanceTraveled(int mainTank, int additionalTank) {              
+        int total = mainTank;
+        while(mainTank >= 5 && additionalTank > 0){
+            mainTank -= 5;
+            mainTank += 1;
+            additionalTank--;
+            total++;
+        }
+        return total * 10;   
+    }
+}
+
+leetcode:1518
+class Solution {
+    public int numWaterBottles(int numBottles, int numExchange) {
+                int total = numBottles;
+        int empty = numBottles;
+        while(empty >= numExchange){
+            int newBottles = empty / numExchange;
+            total += newBottles;
+            empty = empty % numExchange + newBottles;
+        }
+        return total;        
+    }
+}
+
+leetcode:1952
+class Solution {
+    public boolean isThree(int n) {
+                int root = (int)Math.sqrt(n);
+        if(root * root != n){
+            return false;
+        }
+        for(int i = 2; i < root; i++){
+            if(root % i == 0){
+                return false;
+            }
+        }
+        return root > 1;      
+    }
+}
+
+leetcode:397
+class Solution {
+    public int integerReplacement(int n){ 
+        long num = n;
+        int steps = 0;
+        while(num != 1){
+            if(num % 2 == 0){
+                num = num / 2;
+            }
+            else{
+                if(num == 3 || num % 4 == 1){
+                    num--;
+                }
+                else{
+                    num++;
+                }
+            }
+            steps++;
+        }
+        return steps;       
+    }
+}
